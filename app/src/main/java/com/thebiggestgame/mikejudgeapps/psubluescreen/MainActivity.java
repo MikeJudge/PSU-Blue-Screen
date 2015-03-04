@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
 
         if (fragment == null) {
-            fragment = new SwipeFragment();
+            fragment = new MainFragment();
             fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
 

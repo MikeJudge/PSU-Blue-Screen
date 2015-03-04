@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class SwipeFragment extends Fragment {
+public class MainFragment extends Fragment {
     private ViewPager mViewPager;
     private AnnouncementPagerAdapter mPagerAdapter;
     private SlidingTabLayout mSlidingTab;
@@ -25,7 +25,7 @@ public class SwipeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_swipe, container, false);
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         //this next line fixed my big problem with the pages not being redrawn on back button press
         //ChildFragmentManager works, but FragmentManager does not
