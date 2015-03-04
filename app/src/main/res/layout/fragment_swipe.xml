@@ -1,7 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.thebiggestgame.mikejudgeapps.psubluescreen.SwipeFragment">
+
+    <com.thebiggestgame.mikejudgeapps.psubluescreen.SlidingTabLayout
+        android:id="@+id/sliding_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.thebiggestgame.mikejudgeapps.psubluescreen.SlidingTabLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -10,4 +18,5 @@
 
     </android.support.v4.view.ViewPager>
 
-</FrameLayout>
+
+</LinearLayout>

@@ -12,12 +12,15 @@ import android.view.ViewGroup;
 public class SwipeFragment extends Fragment {
     private ViewPager mViewPager;
     private AnnouncementPagerAdapter mPagerAdapter;
+    private SlidingTabLayout mSlidingTab;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,6 +33,12 @@ public class SwipeFragment extends Fragment {
 
         mViewPager = (ViewPager)v.findViewById(R.id.pager);
         mViewPager.setAdapter(mPagerAdapter);
+
+        mSlidingTab = (SlidingTabLayout)v.findViewById(R.id.sliding_tab);
+        mSlidingTab.setViewPager(mViewPager);
+        mSlidingTab.setSelectedIndicatorColors(getResources().getColor(R.color.Penn_State_Blue));
+        mSlidingTab.setDividerColors(getResources().getColor(R.color.Penn_State_Blue));
+
 
         return v;
     }

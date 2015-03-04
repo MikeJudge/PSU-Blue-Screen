@@ -4,11 +4,8 @@ package com.thebiggestgame.mikejudgeapps.psubluescreen;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +73,7 @@ public class ListFragment extends Fragment {
                              Bundle savedInstanceState) {
         mArrayAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.list_item, R.id.item_text_view);
 
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        View v = inflater.inflate(R.layout.fragment_list, container, false);
         mListView = (ListView)v.findViewById(R.id.announcement_list);
         mListView.setAdapter(mArrayAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,6 +104,7 @@ public class ListFragment extends Fragment {
 
         return v;
     }
+
 
 
 

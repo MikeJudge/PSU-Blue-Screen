@@ -1,5 +1,6 @@
 package com.thebiggestgame.mikejudgeapps.psubluescreen;
 
+
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
         //sets the actionbar color to Penn State Blue
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.Penn_State_Blue)));
+
     }
 
 
@@ -62,6 +64,5 @@ public class MainActivity extends ActionBarActivity {
             fm.popBackStack();
         } else
             super.onBackPressed();
-
     }
 }

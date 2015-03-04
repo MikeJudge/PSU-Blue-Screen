@@ -28,10 +28,16 @@ public class BlueScreenTracker {
 	}
 
     public LinkedList<Announcement> getCancellations() {
+        if (cancellations.size() == 0) {
+            cancellations.add(new Announcement("cancellation", "test test test test"));
+        }
         return cancellations;
     }
 
     public LinkedList<Announcement> getEvents() {
+        if (events.size() == 0) {
+            events.add(new Announcement("event", "test test"));
+        }
         return events;
     }
 
