@@ -1,9 +1,9 @@
 package com.thebiggestgame.mikejudgeapps.psubluescreen;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -17,11 +17,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
 
         if (fragment == null) {
-            fragment = new MainFragment();
+            fragment = new SwipeFragment();
             fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
 
@@ -57,10 +57,11 @@ public class MainActivity extends ActionBarActivity {
     //top fragment on the stack
     @Override
     public void onBackPressed() {
-        FragmentManager fm = getFragmentManager();
-        if (fm.getBackStackEntryCount() != 0)
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() != 0) {
             fm.popBackStack();
-        else
+        } else
             super.onBackPressed();
+
     }
 }

@@ -24,7 +24,7 @@ public class BlueScreenTracker {
 	//linkedlists
 	public void refreshFeed() {
 		events = getAnnouncements(EVENTS_URL, 26, 4);
-		//cancellations = getAnnouncements (CANCELLATIONS_URL, 29, 3);
+		cancellations = getAnnouncements (CANCELLATIONS_URL, 29, 3);
 	}
 
     public LinkedList<Announcement> getCancellations() {

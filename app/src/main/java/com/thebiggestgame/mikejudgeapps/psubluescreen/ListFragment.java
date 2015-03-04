@@ -1,13 +1,14 @@
 package com.thebiggestgame.mikejudgeapps.psubluescreen;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,16 @@ import java.util.LinkedList;
 
 
 
-public class MainFragment extends Fragment {
+public class ListFragment extends Fragment {
+    public static final int EVENTS = 1;
+    public static final int CANCELLATIONS = 2;
+    public static final String SETTING = "Setting";
+
     private ListView mListView;
     private SwipeRefreshLayout mPullBar;
     private ArrayAdapter<Announcement> mArrayAdapter;
 
+    private int mInfoDisplay;
 
     /*this task refreshes the blue screen feed by creating a BlueScreenTracker object
       calling the refreshFeed() method, and lastly adding the Announcements from the
@@ -35,7 +41,10 @@ public class MainFragment extends Fragment {
         protected LinkedList<Announcement> doInBackground(URL... urls) {
             BlueScreenTracker tracker = new BlueScreenTracker();
             tracker.refreshFeed();
-            return tracker.getEvents();
+            if (mInfoDisplay == CANCELLATIONS)
+                return tracker.getCancellations();
+            else
+                return tracker.getEvents();
         }
 
         @Override
@@ -46,9 +55,20 @@ public class MainFragment extends Fragment {
         }
     }
 
+    public static ListFragment newInstance(int infoSetting) {
+        ListFragment fragment = new ListFragment();
+        Bundle args = new Bundle();
+        args.putInt(SETTING, infoSetting);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mInfoDisplay = getArguments().getInt(SETTING, EVENTS);
     }
 
     @Override
@@ -67,7 +87,7 @@ public class MainFragment extends Fragment {
 
                 //puts this fragment on the back stack, and starts a new AnnouncementFragment
                 //containing the clicked Announcement as the data
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragmentContainer, fragment).addToBackStack(null);
                 ft.commit();
             }

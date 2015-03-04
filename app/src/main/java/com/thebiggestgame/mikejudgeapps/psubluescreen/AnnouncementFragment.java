@@ -1,8 +1,9 @@
 package com.thebiggestgame.mikejudgeapps.psubluescreen;
 
-import android.app.DialogFragment;
-import android.app.Fragment;
+
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,8 @@ import android.widget.TextView;
 
 public class AnnouncementFragment extends Fragment {
     // the fragment initialization parameters
-    private static final String TITLE = "param1";
-    private static final String MESSAGE = "param2";
+    private static final String TITLE = "title";
+    private static final String MESSAGE = "message";
 
     private String mTitle;
     private String mMessage;
