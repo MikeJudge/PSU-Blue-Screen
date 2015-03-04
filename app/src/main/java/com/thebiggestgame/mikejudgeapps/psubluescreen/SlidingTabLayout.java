@@ -27,6 +27,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 /**
@@ -194,6 +195,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         return textView;
     }
 
+    //changes made here to support my use
     private void populateTabStrip() {
         final PagerAdapter adapter = mViewPager.getAdapter();
         final OnClickListener tabClickListener = new TabClickListener();
@@ -221,6 +223,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             tabTitleView.setTextColor(getResources().getColor(R.color.Penn_State_Blue));
             tabView.setOnClickListener(tabClickListener);
 
+            tabView.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
             mTabStrip.addView(tabView);
         }
     }

@@ -68,6 +68,7 @@ class SlidingTabStrip extends LinearLayout {
         context.getTheme().resolveAttribute(R.attr.colorForeground, outValue, true);
         final int themeForegroundColor =  outValue.data;
 
+        //sets the bottom border to penn state blue
         mDefaultBottomBorderColor = getResources().getColor(com.thebiggestgame.mikejudgeapps.psubluescreen.R.color.Penn_State_Blue);
 
         mDefaultTabColorizer = new SimpleTabColorizer();
