@@ -26,6 +26,8 @@ public class ListFragment extends Fragment {
     private SwipeRefreshLayout mPullBar;
     private ArrayAdapter<Announcement> mArrayAdapter;
 
+    private int mPosition;
+
     private int mInfoDisplay;
 
     /*this task refreshes the blue screen feed by creating a BlueScreenTracker object
@@ -37,11 +39,18 @@ public class ListFragment extends Fragment {
         @Override
         protected LinkedList<Announcement> doInBackground(URL... urls) {
             BlueScreenTracker tracker = new BlueScreenTracker();
-            tracker.refreshFeed();
+            //tracker.refreshFeed();
+            LinkedList<Announcement> list = new LinkedList<>();
+            for (int i = 0; i < 50; i++) {
+                list.add(new Announcement("announcement " + i, "message " + i));
+            }
+            return list;
+            /*
             if (mInfoDisplay == CANCELLATIONS)
                 return tracker.getCancellations();
             else
                 return tracker.getEvents();
+                */
         }
 
         @Override
@@ -49,6 +58,7 @@ public class ListFragment extends Fragment {
             mArrayAdapter.clear();
             mArrayAdapter.addAll(list);
             mPullBar.setRefreshing(false); //stop the refresh bar animation
+            mListView.setSelection(mPosition);
         }
     }
 
@@ -82,6 +92,7 @@ public class ListFragment extends Fragment {
                 Announcement clicked = mArrayAdapter.getItem(position);
                 AnnouncementFragment fragment = AnnouncementFragment.newInstance(clicked);
 
+                mPosition = mListView.getFirstVisiblePosition();
                 //puts this fragment on the back stack, and starts a new AnnouncementFragment
                 //containing the clicked Announcement as the data
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -90,24 +101,23 @@ public class ListFragment extends Fragment {
             }
         });
 
+
         mPullBar = (SwipeRefreshLayout)v.findViewById(R.id.refresh_bar);
         mPullBar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                mPosition = 0;
                 new RefreshFeedTask().execute();
             }
         });
         mPullBar.setColorSchemeColors(getResources().getColor(R.color.Penn_State_Blue));
 
+        mPullBar.setRefreshing(true);
         new RefreshFeedTask().execute();
         //gets the announcements in the listview without need for user refresh on app startup
 
         return v;
     }
-
-
-
-
 
 
 
